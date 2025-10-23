@@ -44,3 +44,14 @@ npm start
 步骤5：访问应用
 主仪表板：http://localhost:3000
 知识图谱：http://localhost:3000/knowledge-graph
+
+# 关闭项目后重新打开
+cd backend
+
+启动Neo4j数据库 docker start neo4j
+
+启动后端服务器 
+
+cd backend
+
+npm install
