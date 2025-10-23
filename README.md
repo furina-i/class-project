@@ -24,8 +24,8 @@ docker run --name neo4j -p 7474:7474 -p 7687:7687 -d -v neo4j_data:/data -v neo4
 -v：挂载数据、日志等目录到本地（防止容器删除后数据丢失）；
 NEO4J_AUTH=neo4j/ocean123：设置默认账号（用户名 neo4j，密码 ocean123）
 
-#初始化项目
-# 在项目根目录执行
+# 初始化项目
+在项目根目录执行
 步骤1：npm初始化
 cd backend
 npm install
