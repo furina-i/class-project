@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海洋新闻态势感知大屏</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
+    <!-- 在 echarts 引入之后添加 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- 添加词云扩展 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.0.0/dist/echarts-wordcloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="navbar">
+            <button id="btn-dashboard" class="nav-btn active">态势感知大屏</button>
+            <button id="btn-knowledge-graph" class="nav-btn">知识图谱</button>
+        </div>
+        
+        <!-- 顶部标题和统计 -->
+        <header class="dashboard-header">
+            <h1>🌊 海洋新闻态势感知系统</h1>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-news">0</div>
+                    <div class="stat-label">新闻总量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-regions">0</div>
+                    <div class="stat-label">涉及区域</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-topics">0</div>
+                    <div class="stat-label">主题分类</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="active-projects">0</div>
+                    <div class="stat-label">治理项目</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主要内容区 -->
+        <main class="dashboard-main">
+            <!-- 左侧：搜索和新闻列表 -->
+            <div class="left-panel">
+                <div class="search-section">
+                    <input type="text" id="keyword-search" placeholder="搜索关键词...">
+                    <select id="region-filter">
+                        <option value="">所有区域</option>
+                    </select>
+                    <select id="topic-filter">
+                        <option value="">所有主题</option>
+                    </select>
+                    <button onclick="searchNews()">搜索</button>
+                    <button onclick="clearFilters()">清空</button>
+                </div>
+                
+                <div class="news-list-section">
+                    <h3>新闻列表</h3>
+                    
+                    <!-- 分页信息 -->
+                    <div class="pagination-info">
+                        显示 <span id="start-index">1</span>-<span id="end-index">10</span> 条，共 <span id="total-count">0</span> 条
+                    </div>
+                    
+                    <!-- 新闻列表容器 -->
+                    <div class="news-list" id="news-list">
+                        <!-- 新闻列表动态填充 -->
+                    </div>
+                    
+                    <!-- 分页控件 -->
+                    <div class="pagination-controls">
+                        <button id="prev-page" class="page-btn" disabled>上一页</button>
+                        <div class="page-numbers" id="page-numbers">
+                            <!-- 页码动态生成 -->
+                        </div>
+                        <button id="next-page" class="page-btn">下一页</button>
+                        <select id="page-size">
+                            <option value="5">5条/页</option>
+                            <option value="10" selected>10条/页</option>
+                            <option value="20">20条/页</option>
+                            <option value="50">50条/页</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：可视化图表 -->
+            <div class="right-panel">
+                <!-- 第一行：Leaflet 地图 -->
+                <div class="chart-row">
+                    <div class="chart-container">
+                        <h4>🌍 全球新闻分布</h4>
+                        <div class="map-controls">
+                            <button id="map-zoom-in" class="map-btn">+</button>
+                            <button id="map-zoom-out" class="map-btn">-</button>
+                            <button id="map-reset" class="map-btn">重置</button>
+                        </div>
+                        <div id="leaflet-map" class="chart"></div>
+                    </div>
+                </div>
+                
+                <!-- 第二行：时间趋势和词云 -->
+                <div class="chart-row">
+                    <div class="chart-container">
+                        <h4>📈 时间趋势分析</h4>
+                        <div id="time-chart" class="chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h4>☁️ 热点词云</h4>
+                        <div id="wordcloud-chart" class="chart"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

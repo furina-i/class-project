@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海洋新闻知识图谱</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        .kg-container {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            position: relative;
+        }
+        
+        .kg-header {
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+        
+        .kg-controls {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 250px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .kg-controls h3 {
+            margin-bottom: 15px;
+            color: #0c2461;
+        }
+        
+        .kg-controls select, .kg-controls input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .kg-controls button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background: #4bcffa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .kg-controls button:hover {
+            background: #0abde3;
+        }
+        
+        #knowledge-graph {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 101;
+            padding: 10px 20px;
+            background: #4bcffa;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .back-button:hover {
+            background: #0abde3;
+        }
+    </style>
+</head>
+<body>
+    <div class="kg-container">
+        <a href="index.html" class="back-button">← 返回仪表板</a>
+        
+        <div class="kg-header">
+            <h1>🌊 海洋新闻知识图谱</h1>
+            <p>探索实体间的复杂关系网络</p>
+        </div>
+        
+        <div class="kg-controls">
+            <h3>图谱探索</h3>
+            
+            <select id="entity-type">
+                <option value="">所有实体类型</option>
+                <option value="Topic">主题</option>
+                <option value="Region">区域</option>
+                <option value="Organization">实施主体</option>
+                <option value="PollutionSource">污染来源</option>
+                <option value="Measure">治理措施</option>
+            </select>
+            
+            <input type="text" id="search-entity" placeholder="搜索实体名称...">
+            
+            <button onclick="searchGraph()">搜索</button>
+            <button onclick="resetGraph()" style="background: #ff6b6b;">重置</button>
+            <button onclick="exportGraph()" style="background: #1dd1a1;">导出图谱</button>
+            
+            <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                <strong>使用提示：</strong>
+                <br>• 点击节点查看详情
+                <br>• 拖拽节点重新布局
+                <br>• 滚轮缩放图谱
+            </div>
+        </div>
+        
+        <div id="knowledge-graph"></div>
+    </div>
+
+    <script src="knowledge-graph.js"></script>
+</body>
+</html>
