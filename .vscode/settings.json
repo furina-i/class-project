@@ -1,0 +1,9 @@
+{
+    "liveServer.settings.port": 5501,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "files.autoSave": "onFocusChange",
+    "html.format.indentInnerHtml": true,
+    "css.format.enable": true,
+    "javascript.format.enable": true
+}
