@@ -1,7 +1,9 @@
 环境配置步骤
-#1. 安装必要的软件
-#Node.js 环境
+# 1. 安装必要的软件
+# Node.js 环境
+
 下载安装 Node.js (LTS版本)
+
 https://nodejs.org/
 
 csdn安装教程
@@ -11,7 +13,7 @@ https://blog.csdn.net/WHF__/article/details/129362462?ops_request_misc=%257B%252
 node --version
 npm --version
 
-#Neo4j 图数据库
+# Neo4j 图数据库
 方式1: Docker安装（推荐）
 docker run --name neo4j -p 7474:7474 -p 7687:7687 -d -v neo4j_data:/data -v neo4j_logs:/logs -v neo4j_import:/var/lib/neo4j/import --env NEO4J_AUTH=neo4j/ocean123 neo4j:latest
 
